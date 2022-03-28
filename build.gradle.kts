@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.net.URI
 
 // Project info
 val projectGroup = "fractalutils"
@@ -13,9 +12,6 @@ plugins {
 
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
-
-    // For publishing the maven-style package for this library
-    `maven-publish`
 }
 
 group = projectGroup
@@ -57,31 +53,3 @@ tasks {
         archives(jar)
     }
 }
-
-
-
-// Publish releases to GitHub Packages
-// Call with gradlew publish, from a github activity.
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            //groupId = projectGroup
-            artifactId = projectArtifact
-            version = projectVersion
-
-            from(components["java"])
-        }
-    }
-
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = URI("https://maven.pkg.github.com/fractalpixel/fractalutils")
-            credentials {
-                username = System.getenv("GITHUB_USERNAME")
-                password = System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
-}
-
