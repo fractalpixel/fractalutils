@@ -17,8 +17,9 @@ Please report any bugs or feature requests to the issue tracker at:
 https://github.com/fractalpixel/fractalutils/issues
 
 
-## Content
-Most classes and function have kotlin docs.  
+## Packages
+Most classes and function have kotlin docs. 
+
 The utilities are grouped into packages with related functionality.  The main packages are:
 
 ### Checking
