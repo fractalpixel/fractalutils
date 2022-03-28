@@ -65,7 +65,7 @@ tasks {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = projectGroup
+            //groupId = projectGroup
             artifactId = projectArtifact
             version = projectVersion
 
