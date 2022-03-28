@@ -1,3 +1,5 @@
+![Build Status](https://github.com/fractalpixel/fractalutils/actions/workflows/run-tests-on-push.yml/badge.svg)
+
 # FractalUtils
 
 A collection of utility functions and classes written in Kotlin.  
