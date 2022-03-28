@@ -1,4 +1,5 @@
 ![Build Status](https://github.com/fractalpixel/fractalutils/actions/workflows/run-tests-on-push.yml/badge.svg)
+[![Release](https://jitpack.io/v/fractalpixel/fractalutils.svg)](https://jitpack.io/#fractalpixel/fractalutils)
 
 # FractalUtils
 
@@ -12,6 +13,31 @@ May have breaking changes introduced between major versions.
 ## License
 
 Licensed under the GNU LGPL v3 license.
+
+
+## Including
+
+A maven / gradle package of this library can be downloaded from [jitpack](https://jitpack.io/#fractalpixel/fractalutils):
+
+Add jitpack.io as a repository (gradle):
+<pre>
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+</pre>
+
+Add dependency:
+<pre>
+	dependencies {
+        implementation 'com.github.fractalpixel:fractalutils:TAG'
+	}
+</pre>
+
+Where TAG is the release to use (e.g. "v3.0.0", see sidebar or 
+[![Release](https://jitpack.io/v/fractalpixel/fractalutils.svg)](https://jitpack.io/#fractalpixel/fractalutils) 
+for latest release version).
+
 
 ## Reporting Issues
 
