@@ -78,7 +78,7 @@ publishing {
             name = "GitHubPackages"
             url = URI("https://maven.pkg.github.com/fractalpixel/fractalutils")
             credentials {
-                username = System.getenv("GITHUB_ACTOR")
+                username = System.getenv("GITHUB_USERNAME")
                 password = System.getenv("GITHUB_TOKEN")
             }
         }
