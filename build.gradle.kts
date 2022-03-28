@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 // Project info
 val projectGroup = "fractalutils"
 val projectArtifact = "fractalutils"
-val projectVersion = "3.0.0-rc.2"
+val projectVersion = "3.0.0-rc.5"
 
 
 plugins {
