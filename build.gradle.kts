@@ -2,10 +2,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 // Project info
 val projectVersion = "3.0.0"
-val projectGroup = "fractalutils"
 val projectArtifact = "fractalutils"
+val projectGroup = "org.fractalpixel"
 val projectDescription = "Utility library with emphasis on game, graphics and simulation related utility functions and classes."
 val projectUrl = "https://github.com/fractalpixel/fractalutils"
+
+val jvmVersion = "11"
 
 plugins {
     // Apply kotlin jvm Plugin to add support for Kotlin.
@@ -34,7 +36,7 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
+    kotlinOptions.jvmTarget = jvmVersion
 }
 
 tasks {
