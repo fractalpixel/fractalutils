@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 // Project info
-val projectVersion = "3.0.0-rc.7"
+val projectVersion = "3.0.0"
 val projectGroup = "fractalutils"
 val projectArtifact = "fractalutils"
 val projectDescription = "Utility library with emphasis on game, graphics and simulation related utility functions and classes."
@@ -43,17 +43,8 @@ tasks {
         from(sourceSets.main.get().allSource)
     }
 
-    /*
-    val javadocJar by creating(Jar::class) {
-        dependsOn.add(javadoc)
-        archiveClassifier.set("javadoc")
-        from(javadoc)
-    }
-    */
-
     artifacts {
         archives(sourcesJar)
-        // archives(javadocJar)
         archives(jar)
     }
 }
