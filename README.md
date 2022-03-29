@@ -1,4 +1,4 @@
-![Build Status](https://github.com/fractalpixel/fractalutils/actions/workflows/run-tests-on-push.yml/badge.svg)
+[![Build Status](https://github.com/fractalpixel/fractalutils/actions/workflows/run-tests-on-push.yml/badge.svg)](https://github.com/fractalpixel/fractalutils/actions/workflows/run-tests-on-push.yml)
 [![Release](https://jitpack.io/v/fractalpixel/fractalutils.svg)](https://jitpack.io/#fractalpixel/fractalutils)
 
 # FractalUtils
