@@ -42,7 +42,7 @@ for latest release version).
 ## Usage
 Most classes and function have kotlin docs. 
 
-The utilities are grouped into packages with related functionality.  The main packages are:
+The utilities are grouped into packages with related functionality.  The packages are:
 
 ### checking
 Contains the Check utility class, for checking function parameters and invariants, 
