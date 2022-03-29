@@ -21,17 +21,17 @@ A maven / gradle package of this library can be downloaded from [jitpack](https:
 
 Add jitpack.io as a repository (gradle):
 <pre>
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
-    }
+repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+}
 </pre>
 
 Add dependency:
 <pre>
-	dependencies {
-        implementation 'com.github.fractalpixel:fractalutils:TAG'
-	}
+dependencies {
+    implementation 'com.github.fractalpixel:fractalutils:TAG'
+}
 </pre>
 
 Where TAG is the release to use (e.g. "v3.0.0", see sidebar or 
