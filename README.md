@@ -34,7 +34,7 @@ dependencies {
 }
 </pre>
 
-Where TAG is the release to use (e.g. "v3.0.0", see sidebar or 
+Where TAG is the release to use (e.g. "v3.0.0", see tags in the sidebar or 
 [![Release](https://jitpack.io/v/fractalpixel/fractalutils.svg)](https://jitpack.io/#fractalpixel/fractalutils) 
 for latest release version).
 
