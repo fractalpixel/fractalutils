@@ -39,13 +39,7 @@ Where TAG is the release to use (e.g. "v3.0.0", see sidebar or
 for latest release version).
 
 
-## Reporting Issues
-
-Please report any bugs or feature requests to the issue tracker at:
-https://github.com/fractalpixel/fractalutils/issues
-
-
-## Packages
+## Usage
 Most classes and function have kotlin docs. 
 
 The utilities are grouped into packages with related functionality.  The main packages are:
@@ -148,3 +142,10 @@ Contains the Updating interface, for something that can be updated and is passed
 Also has various update strategies, e.g. for handling updates that simulate a fixed amount of time.
 Useful for game logic code or simulations.
 
+
+## Reporting Issues
+
+Please report any bugs or feature requests to the issue tracker at:
+https://github.com/fractalpixel/fractalutils/issues
+
+Pull requests for fixes are welcome too.
