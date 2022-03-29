@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 // Project info
 val projectGroup = "fractalutils"
 val projectArtifact = "fractalutils"
-val projectVersion = "3.0.0-rc.5"
+val projectVersion = "3.0.0-rc.6"
 
 
 plugins {
@@ -12,6 +12,9 @@ plugins {
 
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
+
+    // For building packages
+    `maven-publish`
 }
 
 group = projectGroup
