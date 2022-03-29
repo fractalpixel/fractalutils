@@ -1,10 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 // Project info
+val projectVersion = "3.0.0-rc.7"
 val projectGroup = "fractalutils"
 val projectArtifact = "fractalutils"
-val projectVersion = "3.0.0-rc.6"
-
+val projectDescription = "Utility library with emphasis on game, graphics and simulation related utility functions and classes."
+val projectUrl = "https://github.com/fractalpixel/fractalutils"
 
 plugins {
     // Apply kotlin jvm Plugin to add support for Kotlin.
@@ -56,3 +57,22 @@ tasks {
         archives(jar)
     }
 }
+
+
+// Configuration for publish releases (e.g. using jitpack.io)
+// Call with gradlew publish
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = projectGroup
+            artifactId = projectArtifact
+            version = projectVersion
+
+            from(components["java"])
+
+            artifact(tasks["sourcesJar"])
+        }
+    }
+}
+
+
