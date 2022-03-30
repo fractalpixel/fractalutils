@@ -1,7 +1,6 @@
 package fractalutils.resource
 
 import fractalutils.stream.readToString
-import fractalutils.strings.prefix
 import java.io.IOException
 import java.io.InputStream
 import java.nio.charset.Charset
@@ -15,11 +14,8 @@ import java.nio.charset.Charset
  */
 @Throws(IOException::class)
 fun getResourceAsString(resourcePath: String, charset: Charset = Charsets.UTF_8): String {
-    val resourceStream = getResourceAsStream(resourcePath)
-    try {
-        return resourceStream.readToString(charset) // Closes the stream
-    } catch (e: IOException) {
-        throw IOException("Could not read resource at '$resourcePath': " + e.message, e)
+    getResourceAsStream(resourcePath).use {
+        return it.readToString(charset)
     }
 }
 
@@ -32,13 +28,8 @@ fun getResourceAsString(resourcePath: String, charset: Charset = Charsets.UTF_8)
  */
 @Throws(IOException::class)
 fun getResourceAsBytes(resourcePath: String): ByteArray {
-    val resourceStream = getResourceAsStream(resourcePath)
-    try {
-        return resourceStream.readBytes() // Does not close the stream
-    } catch (e: IOException) {
-        throw IOException("Could not read resource at '$resourcePath': " + e.message, e)
-    } finally {
-        resourceStream.close()
+    getResourceAsStream(resourcePath).use {
+        return it.readBytes()
     }
 }
 
@@ -47,22 +38,48 @@ fun getResourceAsBytes(resourcePath: String): ByteArray {
  * It is the callers responsibility to close the returned stream when ready.
  *
  * @param resourcePath path to resource to read.
- * @param classLoaderAccessor can be used to pass in a java class object whose classloader is used to retrieve the resources.
+ * @param classLoader the classloader to load resources with.
  *        Unless modules or fancy live classloading is used the default should probably work fine.
  * @return stream with the resource.  The caller should close it when done.
  * @throws IOException if the resource was not found.
  */
 @Throws(IOException::class)
-fun getResourceAsStream(resourcePath: String, classLoaderAccessor: Class<Any> = ClassLoaderAccessor.javaClass): InputStream {
-    val path = resourcePath.prefix("/", true).replace('\\', '/')
+fun getResourceAsStream(resourcePath: String,
+                        classLoader: ClassLoader = getDefaultClassLoader()): InputStream {
+    val path = resourcePath.replace('\\', '/')
     try {
-        return classLoaderAccessor.getResourceAsStream(path)
+        return classLoader.getResourceAsStream(path)
             ?: throw IOException("No resource found at location '$path'")
     } catch (e: IOException) {
         throw IOException("Could not access resource at '$path': " + e.message, e)
     }
 }
 
+/**
+ * Returns classloader.
+ *
+ * First looks for the context classloader from the current thread, if that is not specified looks
+ * for a classloader for this library, if that is unspecified fetches the system classloader.
+ */
+fun getDefaultClassLoader(): ClassLoader {
+    return getContextClassLoader() ?: getClassLoaderForClass(ClassLoaderAccessor.javaClass)
+}
+
+/**
+ * Returns the classloader for the specified class if it has a custom one specified,
+ * or the default system class loader if it doesn't have a classloader.
+ */
+fun getClassLoaderForClass(classToUse: Class<Any>): ClassLoader {
+    return classToUse.classLoader ?: ClassLoader.getSystemClassLoader()
+}
+
+/**
+ * Returns the classloader from the current thread, if specified.
+ * Returns null if no such classloader is used.
+ */
+fun getContextClassLoader(): ClassLoader? {
+    return Thread.currentThread().contextClassLoader
+}
 
 // Used to access the classloader and the resources through it.
 private object ClassLoaderAccessor

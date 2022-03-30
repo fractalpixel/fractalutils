@@ -1,0 +1,3 @@
+4
+#include subDir/d.txt
+6

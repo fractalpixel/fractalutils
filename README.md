@@ -98,6 +98,14 @@ Also includes an interface for hashing functions and an implementation.
 ### resource
 Utility for loading data from java resource files included in Jars.
 
+Includes a ResourceSystem that provides a way to load various data from a file system like structure,
+and separate implementations of it that use the file system and resources loaded with a classloader from the Jar. 
+This provides a way to abstracts the source of loaded data.  It also allows writing custom resource systems,
+e.g. for generated data or data loaded over the network.
+
+The Resource files also provide a function for loading text resources and resolving simple #include 
+directives, which is useful e.g. for shader code that do not support includes natively.
+
 ### service
 Interface and base classes for components of an application that are initialized at application start and shutdown
 at application end, and that may need to access other such components of the application.

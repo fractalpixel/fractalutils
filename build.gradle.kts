@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 // Project info
-val projectVersion = "3.0.0"
+val projectVersion = "3.0.1"
 val projectArtifact = "fractalutils"
 val projectGroup = "org.fractalpixel"
 val projectDescription = "Utility library with emphasis on game, graphics and simulation related utility functions and classes."

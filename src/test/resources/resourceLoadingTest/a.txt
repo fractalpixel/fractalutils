@@ -1,0 +1,6 @@
+1
+#include b.txt
+3
+#include b.txt
+#include subDir/c.txt
+7
