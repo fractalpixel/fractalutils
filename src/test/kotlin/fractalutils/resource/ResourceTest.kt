@@ -1,6 +1,7 @@
 package fractalutils.resource
 
 import fractalutils.resource.classpath.JarResourceSystem
+import fractalutils.resource.memory.MemResourceSystem
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
 
@@ -73,7 +74,28 @@ class ResourceTest {
         assertEquals(Pair("subDir/d.txt", 1), lineMapping.getSourceAndLine(5), "Source lookup should work")
         assertEquals(Pair("subDir/c.txt", 3), lineMapping.getSourceAndLine(6), "Source lookup should work")
         assertEquals(Pair("a.txt", 6), lineMapping.getSourceAndLine(7), "Source lookup should work")
+    }
 
 
+    @Test
+    fun testMemoryResourceSystem() {
+        val resourceSystem = MemResourceSystem()
+
+        resourceSystem.setData("a.txt", "Hello")
+        resourceSystem.setData("foo/bar/b", "World")
+        resourceSystem.setData("foo/bar/c", "Universe")
+
+        assertEquals( true, resourceSystem["a.txt"].exists, "Memory resources should work")
+        assertEquals( false, resourceSystem["boo"].exists, "Memory resources should work")
+        assertEquals( true, resourceSystem["a.txt"].isFile, "Memory resources should work")
+        assertEquals( false, resourceSystem["a.txt"].isDirectory, "Memory resources should work")
+        assertEquals( true, resourceSystem["foo"].exists, "Memory resources should work")
+        assertEquals( false, resourceSystem["foo"].isFile, "Memory resources should work")
+        assertEquals( true, resourceSystem["foo"].isDirectory, "Memory resources should work")
+        assertEquals( "Hello", resourceSystem["a.txt"].readText(), "Memory resources should load")
+        assertEquals( "World", resourceSystem["foo/bar/b"].readText(), "Memory subdirectories should work")
+        var s = ""
+        resourceSystem["foo/bar/"].forEach { s += it.readText() }
+        assertEquals( "WorldUniverse", s, "Iterating memory subdirectories should work")
     }
 }

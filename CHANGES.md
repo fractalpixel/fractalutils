@@ -11,3 +11,8 @@ Added a SourceLineMapping class for mapping from positions in a combined source 
 An instance of SourceLineMapping can now be passed to Resource.readTextWithIncludes(), and will be filled with
 the mappings from the result to the original sources and locations in them.  Useful for tracing compile error
 messages and similar to their original locations.
+
+## v3.0.3, 2022-04-05: Added memory and singleton resources.
+Added MemResourceSystem and MemResource for storing resources in memory, providing a unified API to tree-structured
+resource collections along with file and classpath based resources.
+Added SingletonResource for storing single resources as a convenient way to pass data to APIs that take Resources as input.
