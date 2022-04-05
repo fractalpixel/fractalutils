@@ -196,17 +196,20 @@ interface Resource {
      * @param ignoreDirectiveCase if true, the exact case of the directive is ignored (matches both upper and lower cases).
      * The actual included files are tested with exact case though. Defaults to true.
      * @param charSet the character set that the input text files use.  Defaults to UTF8.
+     * @param sourceMappingOut an optional [SourceLineMapping] that the source names and locations for each line in
+     *        the resulting text are written to.  Can be used e.g. to look up locations of error messages.
+     * @return The resulting text, with included result from other resources.
+     * @throws IOException if the resource or an included resource was not found or could not be read.
      */
     fun readTextWithIncludes(resourcePath: String? = null,
                              includeDirective: String = "#include",
                              ignoreDirectiveCase: Boolean = true,
-                             charSet: Charset = Charsets.UTF_8): String? {
-
-        // IDEA: Also return some kind of line number lookup structure that can be used to map line numbers
-        //       (from error messages) in the composite file back to the original resource files.
+                             sourceMappingOut: SourceLineMapping<String>? = null,
+                             charSet: Charset = Charsets.UTF_8): String {
 
         val alreadyIncluded = HashSet<String>()
         val resultBuilder = StringBuilder()
+        sourceMappingOut?.clear()
 
         // Load resource
         val resourceText: String = readText(charSet)
@@ -219,6 +222,7 @@ interface Resource {
             ignoreDirectiveCase,
             resultBuilder,
             alreadyIncluded,
+            sourceMappingOut,
             charSet)
 
         return resultBuilder.toString()
@@ -231,6 +235,7 @@ interface Resource {
                                               ignoreDirectiveCase: Boolean,
                                               resultBuilder: StringBuilder,
                                               alreadyIncluded: HashSet<String>,
+                                              sourceMappingOut: SourceLineMapping<String>?,
                                               charSet: Charset) {
 
         // Do not include things multiple times
@@ -253,11 +258,14 @@ interface Resource {
                     }
 
                     // Add the included file to the builder, and check for any additional includes in it.
-                    doLoadResourceParsingIncludes(includedResource, includedResourceText, resourcePath, includeDirective, ignoreDirectiveCase, resultBuilder, alreadyIncluded, charSet)
+                    doLoadResourceParsingIncludes(includedResource, includedResourceText, resourcePath, includeDirective, ignoreDirectiveCase, resultBuilder, alreadyIncluded, sourceMappingOut, charSet)
                 }
             } else {
                 // Normal line, include in result
                 resultBuilder.append(line).append("\n")
+
+                // Build mapping
+                sourceMappingOut?.appendLineMapping(resource.path, lineNum + 1) // Lines start with 1
             }
         }
     }

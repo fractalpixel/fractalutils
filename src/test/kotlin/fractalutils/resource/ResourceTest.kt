@@ -58,4 +58,22 @@ class ResourceTest {
         assertFalse(z.isFile, "Non-existing resources should return false for isFile")
 
     }
+
+
+    @Test
+    fun testLineMapping() {
+        val resourceSystem = JarResourceSystem("resourceLoadingTest")
+        val lineMapping = SourceLineMapping<String>()
+        resourceSystem["a.txt"].readTextWithIncludes(sourceMappingOut = lineMapping)
+
+        assertEquals(Pair("a.txt", 1), lineMapping.getSourceAndLine(1), "Source lookup should work")
+        assertEquals(Pair("b.txt", 1), lineMapping.getSourceAndLine(2), "Source lookup should work")
+        assertEquals(Pair("a.txt", 3), lineMapping.getSourceAndLine(3), "Source lookup should work")
+        assertEquals(Pair("subDir/c.txt", 1), lineMapping.getSourceAndLine(4), "Source lookup should work")
+        assertEquals(Pair("subDir/d.txt", 1), lineMapping.getSourceAndLine(5), "Source lookup should work")
+        assertEquals(Pair("subDir/c.txt", 3), lineMapping.getSourceAndLine(6), "Source lookup should work")
+        assertEquals(Pair("a.txt", 6), lineMapping.getSourceAndLine(7), "Source lookup should work")
+
+
+    }
 }
