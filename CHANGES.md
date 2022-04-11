@@ -16,3 +16,6 @@ messages and similar to their original locations.
 Added MemResourceSystem and MemResource for storing resources in memory, providing a unified API to tree-structured
 resource collections along with file and classpath based resources.
 Added SingletonResource for storing single resources as a convenient way to pass data to APIs that take Resources as input.
+
+## v3.0.4, 2022-04-11: Allow overriding ServiceBase.init()
+Necessary e.g. to define custom documentation for it in interfaces that are implemented by classes that extend ServiceBase.
