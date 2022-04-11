@@ -43,7 +43,8 @@ interface Service {
     /**
      * Initialize the service, do any required startup tasks, reserve resources, etc.
      * Must be called before the Service is used.
-     * @param serviceProvider can be queried for other services.  Not all services have necessarily been initialized yet.
+     * @param serviceProvider optional registry can be queried for other services.
+     * Not all services have necessarily been initialized yet when this is called.
      */
     fun init(serviceProvider: ServiceProvider?)
 

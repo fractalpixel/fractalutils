@@ -8,7 +8,7 @@ abstract class ServiceBase: Service {
     override var status: ServiceState = ServiceState.UNINITIALIZED
         protected set
 
-    final override fun init() {
+    override fun init() {
         init(null)
     }
 
