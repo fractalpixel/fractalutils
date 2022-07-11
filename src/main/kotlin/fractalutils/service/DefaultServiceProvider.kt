@@ -3,7 +3,7 @@ package fractalutils.service
 import java.util.*
 
 /**
- * Usually used as a base class for the central controller of an application.
+ * Typically used as a base class for the central controller of an application.
  * Add services using [addService], and start all services by calling [init].
  * Shutdown everything by calling [shutdown].
  *
